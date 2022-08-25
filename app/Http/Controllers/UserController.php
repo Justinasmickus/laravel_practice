@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -21,8 +22,11 @@ class UserController extends Controller
             'password' => 'required|confirmed|min:6'
         ]);
 
+        
+
         // Hash Password
-        $formFields['password'] = bcrypt($formFields['password']);
+        // $formFields['password'] = bcrypt($formFields['password']);
+        $formFields['password'] = Hash::make($formFields['password']);;
 
         // Create User
         $user = User::create($formFields);
