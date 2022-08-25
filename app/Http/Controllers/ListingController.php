@@ -7,6 +7,7 @@ use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
+
 class ListingController extends Controller
 {
     //show all listings
@@ -86,6 +87,10 @@ class ListingController extends Controller
         $listing->delete();
         return redirect('/')->with('message', 'Listing deleted successfuly!');
     }
+    public function manage(){
+        return view('listings.manage', ['listings' => auth()->user()->listings]);
+    }
 
+    
     
 }
